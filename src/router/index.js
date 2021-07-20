@@ -15,7 +15,7 @@ files.keys().forEach((key) => {
 // 默认路由配置
 const defaultRoutes = [
   { path: "/", redirect: "/login" },
-  { path: "/login", name: "登陆", component: () => import("@/views/login/index.vue") },
+  { path: "/login", name: "登陆", component: () => import("@/views/login") },
 ];
 
 // 拼装路由
@@ -26,6 +26,7 @@ const router = new VueRouter({
   routes,
 });
 
+/* 处理点击重复路由报错的问题 */
 const originalReplace = VueRouter.prototype.replace;
 VueRouter.prototype.replace = function replace(location) {
   return originalReplace.call(this, location).catch(err => err);

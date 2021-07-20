@@ -3,7 +3,7 @@ import { Message } from "element-ui";
 export function errorMessage(message) {
   return Message({
     message,
-    type: "danger",
+    type: "error",
   });
 }
 

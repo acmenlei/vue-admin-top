@@ -1,17 +1,25 @@
 <template>
   <el-card class="publish">
-    <el-form :model="articleData" label-width="40px">
+    <el-form ref="form-article" :model="articleData" label-width="40px">
       <el-form-item label="标题">
         <el-input
-          prefix-icon="el-icon-edit"
+          placeholder="输入标题"
           v-model="articleData.articleTitle"
         ></el-input>
       </el-form-item>
       <el-form-item label="分类">
-        <el-select v-model="articleData.articleCategroy" placeholder="活动区域">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
+        <el-select v-model="articleData.articleCategroy" placeholder="文章分类">
+          <el-option label="note" value="note"></el-option>
+          <el-option label="technical" value="technical"></el-option>
         </el-select>
+      </el-form-item>
+      <el-form-item label="标签">
+        <!-- 后台拉取 -->
+        <el-checkbox-group v-model="articleData.articleTags">
+          <el-checkbox label="node"></el-checkbox>
+          <el-checkbox label="vue"></el-checkbox>
+          <el-checkbox label="react"></el-checkbox>
+        </el-checkbox-group>
       </el-form-item>
       <el-form-item label="简介">
         <el-input
@@ -37,11 +45,16 @@
       </el-form-item>
     </el-form>
     <mavon-editor class="mavon-editor-container" v-model="value" />
+    <el-button class="publish-article" type="primary" @click="publishArticle('form-article')">
+      publish article
+    </el-button>
   </el-card>
 </template>
 
 <script>
 import "mavon-editor/dist/css/index.css"; // 富文本编辑器css
+import Tips from "@/common/tips"
+import { errorMessage } from "@/common/message"
 
 export default {
   name: "edit",
@@ -59,6 +72,15 @@ export default {
   },
   methods: {
     uploadSuccess() {},
+    publishArticle(formArticle) {
+      this.$refs[formArticle].validate((error) => {
+        if(!error) {
+          console.log(this.articleData);
+        } else {
+          errorMessage(Tips.VALIDATE_ERROR)
+        }
+      })
+    },
   },
 };
 </script>
@@ -66,6 +88,10 @@ export default {
 <style>
 .mavon-editor-container {
   height: 80vh;
+}
+.publish-article {
+  width: 100%;
+  margin-top: 1rem;
 }
 .avatar-uploader .el-upload {
   border: 1px dashed #d9d9d9;

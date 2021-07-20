@@ -11,7 +11,7 @@ export default {
       hidden: false,
       name: "工作台",
       icon:"el-icon-s-shop",
-      component: () => import("@/views/home/index.vue"),
+      component: () => import("@/views/home"),
     }
   ],
 };
