@@ -1,0 +1,1 @@
+export const TAG_COLORS = ["primary", "success", "danger", "info", "warning","primary", "success", "danger", "info", "warning"]

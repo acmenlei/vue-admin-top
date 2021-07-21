@@ -1,5 +1,6 @@
 <template>
   <div id="myheader">
+    <div class="title">测试管理台</div>
     <el-dropdown>
       <span class="el-dropdown-link">
         <el-avatar :size="30" :src="head" />
@@ -25,10 +26,15 @@ export default {
 };
 </script>
 <style scoped>
-#myheader .el-dropdown-link {
+#myheader, #myheader .el-dropdown-link {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 60px;
+}
+#myheader {
+  width: 100%;
+  background: var(--header);
 }
 #myheader span {
   margin-left: 0.5rem;
