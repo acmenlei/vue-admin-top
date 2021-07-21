@@ -1,13 +1,8 @@
-import nProgress from "nprogress"
-import 'nprogress/nprogress.css'
 import Vue from "vue"
 import VueRouter from "vue-router"
 const files = require.context(".", true, /\.js$/)
 
-nProgress.configure({ showSpinner: false, easing: 'ease', speed: 500 })
-
 Vue.use(VueRouter)
-Vue.use(nProgress)  // 路由跳转进度
 
 let configRouters = []
 
@@ -42,14 +37,5 @@ VueRouter.prototype.push= function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
 
-/* 守卫 */
-router.beforeEach( (to, from, next) => {
-  nProgress.start()
-  let { path, name } = to
-  window.bus.$emit("add-breadcrumb", { path, name })
-  next()
-})
-
-router.afterEach( () => nProgress.done() )
 
 export { router, configRouters }
