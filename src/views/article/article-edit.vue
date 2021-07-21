@@ -53,7 +53,7 @@
 
 <script>
 import "mavon-editor/dist/css/index.css"; // 富文本编辑器css
-import Tips from "@/common/tips"
+import { VALIDATE_ERROR } from "@/common/tips"
 import { errorMessage } from "@/common/message"
 
 export default {
@@ -93,7 +93,7 @@ export default {
         if(!error) {
           console.log(this.articleData);
         } else {
-          errorMessage(Tips.VALIDATE_ERROR)
+          errorMessage(VALIDATE_ERROR)
         }
       })
     },

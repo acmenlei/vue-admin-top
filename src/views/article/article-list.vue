@@ -28,8 +28,9 @@
         ></el-form-item
       >
     </el-form>
+
     <!-- 表格数据 -->
-    <el-table :data="tableData" border fit lazy laod style="width: 100%">
+    <el-table v-if="tableData.length" :data="tableData" border fit lazy laod style="width: 100%">
       <el-table-column align="center" prop="title" label="标题" width="150">
       </el-table-column>
       <el-table-column align="center" prop="introduce" label="简介" width="300">
@@ -72,6 +73,10 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <!-- 没有文章的时候显示该条空提示 -->
+    <el-empty v-else :description="ARTICLE_EMPTY"></el-empty>
+
     <el-pagination
       class="my-page"
       @current-change="handleCurrentChange"
@@ -81,11 +86,13 @@
       :total="total"
     >
     </el-pagination>
+    
   </el-card>
 </template>
 
 <script>
 import ArticleListMock from "@/mock/article-list-mock";
+import { ARTICLE_EMPTY } from "@/common/tips"
 // import { getArticleList } from "@/api/article"
 
 export default {
@@ -100,6 +107,7 @@ export default {
       },
       total: 100, // 文章总数
       tableData: ArticleListMock,
+      ARTICLE_EMPTY
     };
   },
   inject: ['TAG_COLORS'], // 接收标签颜色

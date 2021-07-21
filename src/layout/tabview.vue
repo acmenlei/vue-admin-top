@@ -4,7 +4,7 @@
       :uniqueOpened="true"
       class="el-menu-vertical-demo"
       background-color="var(--theme)"
-      style="height: 100%;"
+      style="height: 100vh;"
       router
     >
       <div v-for="(route, index) in routes" :key="index">

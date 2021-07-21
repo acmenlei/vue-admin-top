@@ -9,7 +9,7 @@ import mavonEditor  from "mavon-editor"
 window.bus = new Vue();
 
 Vue.use(mavonEditor)
-Vue.use(Element, { size: "mini" })
+Vue.use(Element, { size: "small" })
 
 new Vue({
   render: (h) => h(App),
