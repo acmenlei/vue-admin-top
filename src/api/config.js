@@ -1,7 +1,7 @@
 import axios from "axios";
 import { hideLoading, showLoading } from "@/common/loading";
 
-const baseURL = "https://jsonplaceholder.typicode.com";
+const baseURL = "http://localhost:3000";
 
 const instance = axios.create({
   baseURL,
@@ -47,6 +47,7 @@ export function get(url, params = {}) {
         reject(error);
       });
   });
+ 
 }
 export function post(url, data = {}) {
   return new Promise((resolve, reject) => {

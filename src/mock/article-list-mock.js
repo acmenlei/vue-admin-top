@@ -1,6 +1,6 @@
 export default [
     {
-        title: 'Vuejs3.0到底快在哪里？',
+        title: 'test？',
         introduce: "seek code of the Vuejs, you can see the...",
         category: "technical",
         tags: ['vuejs', 'proxy'],

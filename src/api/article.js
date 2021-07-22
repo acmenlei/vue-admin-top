@@ -1,5 +1,5 @@
-import { get } from "@/api/config"
+import { post } from "@/api/config"
 
 export function getArticleList(data) {
-    return get('/article/list', data)
+    return post('/article/list', data)
 }
