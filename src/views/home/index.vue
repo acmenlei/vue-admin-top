@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import { getusersList } from "@/api/user";
 
 export default {
   name: "home",
@@ -18,11 +17,6 @@ export default {
     return {
       users: []
     }
-  },
-  mounted() {
-    getusersList().then(res => {
-      this.users = res;
-    });
   }
 };
 </script>

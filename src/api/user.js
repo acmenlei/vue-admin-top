@@ -1,5 +1,5 @@
-import { get } from "@/api/config"
+import { post } from "@/api/config"
 
-export function getusersList(data) {
-    return get("/users", data);
+export function adminLogin(data) {
+    return post('/admin/login', data);
 }

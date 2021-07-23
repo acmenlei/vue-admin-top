@@ -4,7 +4,7 @@
       <el-form
         :model="ruleForm"
         :rules="rules"
-        ref="ruleForm"
+        ref="loginForm"
         label-width="80px"
         class="demo-ruleForm"
       >
@@ -13,7 +13,7 @@
         </el-form-item>
         <el-form-item prop="username">
           <el-input
-            v-model="ruleForm.username"
+            v-model="ruleForm.ll_username"
             prefix-icon="el-icon-user"
             placeholder="请输入帐号"
           >
@@ -22,14 +22,17 @@
         <el-form-item prop="password">
           <el-input
             type="password"
-            v-model="ruleForm.password"
+            v-model="ruleForm.ll_password"
             prefix-icon="el-icon-lock"
             placeholder="请输入密码"
           >
           </el-input>
         </el-form-item>
         <el-form-item>
-          <el-button style="width: 100%" type="primary" @click="login"
+          <el-button
+            style="width: 100%"
+            type="primary"
+            @click="login('loginForm')"
             >登陆</el-button
           >
         </el-form-item>
@@ -39,12 +42,16 @@
 </template>
 
 <script>
+import { VALIDATE_ERROR, NETWORK_ERROR } from "@/common/tips";
+import { errorMessage } from "@/common/message";
+import { adminLogin } from "@/api/user";
+
 export default {
   name: "login",
   data() {
     return {
       rules: {
-        username: [
+        ll_username: [
           {
             max: 11,
             min: 11,
@@ -53,7 +60,7 @@ export default {
             required: true,
           },
         ],
-        password: [
+        ll_password: [
           {
             max: 16,
             min: 8,
@@ -64,14 +71,29 @@ export default {
         ],
       },
       ruleForm: {
-        username: "",
-        password: "",
+        ll_username: "",
+        ll_password: "",
       },
     };
   },
   methods: {
-    login() {
-      /* 登录请求 */
+    /* 登录请求 */
+    async login(form) {
+      try {
+        await this.$refs[form].validate(); // 验证通过
+      } catch {
+        return errorMessage(VALIDATE_ERROR);
+      }
+      try {
+        const { code, msg } = await adminLogin(this.ruleForm);
+        if ( code == 200) {
+          this.$store.dispatch('user/login'); // 处理本地cookie
+        } else {
+          return errorMessage(msg);
+        }
+      } catch {
+        errorMessage(NETWORK_ERROR);
+      }
     },
   },
 };

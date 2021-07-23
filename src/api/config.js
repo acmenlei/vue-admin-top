@@ -1,5 +1,6 @@
 import axios from "axios";
 import { hideLoading, showLoading } from "@/common/loading";
+import { getToken, getUsername } from '@/common/cookie';
 
 const baseURL = "http://localhost:3000";
 
@@ -8,12 +9,15 @@ const instance = axios.create({
   timeout: 5000,
   withCredentials: true,
 });
-
+/* 拦截所有请求 */
 instance.interceptors.request.use(
   (config) => {
     showLoading();
     if (!config.headers["token"]) {
-      config.headers["token"] = "xxxx";
+      config.headers["token"] = getToken();
+    }
+    if(!config.headers["username"]) {
+      config.headers["username"] = getUsername();
     }
     return config;
   },

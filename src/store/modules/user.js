@@ -1,16 +1,21 @@
-const TOKEN = "token"; // 应该取cookie里的
+import { getToken } from "@/common/cookie"
+
 const SET_TOKEN = "SET_TOKEN";
 const user = {
   namespaced: true,
   state: {
-    token: TOKEN,
+    token: getToken(),
   },
   mutations: {
     [SET_TOKEN](state, data) {
       state.token = data;
     },
   },
-  actions: {},
+  actions: {
+    [SET_TOKEN](ctx) {
+      console.log(ctx);
+    }
+  },
   getters: {
     token: (state) => state.token,
   },
