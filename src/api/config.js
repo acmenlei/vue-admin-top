@@ -1,6 +1,6 @@
 import axios from "axios";
 import { hideLoading, showLoading } from "@/common/loading";
-import { getToken, getUsername } from '@/common/cookie';
+import { setToken, getToken, setUsername, getUsername } from '@/common/cookie';
 
 const baseURL = "http://localhost:3000";
 
@@ -16,18 +16,24 @@ instance.interceptors.request.use(
     if (!config.headers["token"]) {
       config.headers["token"] = getToken();
     }
-    if(!config.headers["username"]) {
+    if (!config.headers["username"]) {
       config.headers["username"] = getUsername();
     }
     return config;
   },
   (error) => Promise.reject(new Error(error))
 );
-
+/* 拦截相应 存储对应的token与username信息 */
 instance.interceptors.response.use(
-  (data) => {
+  (config) => {
+    const { url } = config.config;
+    const { headers, data } = config;
+    if (['/admin/login', '/admin/register'].includes(url)) {
+      setToken(headers.token);
+      setUsername(headers.username);
+    }
     hideLoading();
-    return data.data;
+    return data;
   },
   (error) => {
     hideLoading();
@@ -51,7 +57,7 @@ export function get(url, params = {}) {
         reject(error);
       });
   });
- 
+
 }
 export function post(url, data = {}) {
   return new Promise((resolve, reject) => {

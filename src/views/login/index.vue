@@ -91,7 +91,8 @@ export default {
         } else {
           return errorMessage(msg);
         }
-      } catch {
+      } catch(e) {
+        console.log(e);
         errorMessage(NETWORK_ERROR);
       }
     },
