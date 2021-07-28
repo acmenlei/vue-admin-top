@@ -1,4 +1,4 @@
-import { areaStyle } from "../plugins/vcharts"
+import { areaStyle, axisLabel } from "../plugins/vcharts"
 
 export default {
   pieChartSettings: { type: "pie" },
@@ -8,6 +8,7 @@ export default {
       { key: "technical", value: 3 },
       { key: "study", value: 5 },
       { key: "notes", value: 8 },
+      { key: "share", value: 4 },
     ],
   },
   lineChartData: {
@@ -26,7 +27,9 @@ export default {
     areaStyle,
   },
   lineChartExtend: {
-    xAxis: { boundaryGap: false }
+    xAxis: {
+      boundaryGap: false, axisLabel
+    },
   }, // 让x轴紧挨着y轴开始
   lineChartData2: {
     columns: ["日期", "注册人数"],
@@ -54,4 +57,9 @@ export default {
       { 日期: "2020-1-6", 访问量: 4593, 获赞量: 4293, 获赞率: 0.78 },
     ],
   },
+  histogramChartExtend: {
+    xAxis: {
+      axisLabel
+    },
+  }
 }

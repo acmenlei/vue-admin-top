@@ -8,7 +8,7 @@
     <!-- 近30日注册人数 --（人数统计） -->
     <ve-line :extend="lineChartExtend" :data="lineChartData2" :settings="lineChartSettings2"></ve-line>
     <!-- 近30日发布文章数量 --（折线图） -->
-    <ve-histogram :data="histogramChartData"></ve-histogram>
+    <ve-histogram :extend="histogramChartExtend" :data="histogramChartData"></ve-histogram>
   </div>
   </el-card>
 </template>
@@ -19,15 +19,16 @@ import vChartsData from "@/mock/v-charts-mock";
 export default {
   name: "home",
   data() {
-    return {
+    return { // mock vcharts data
       lineChartExtend: vChartsData.lineChartExtend,
-      pieChartSettings: vChartsData.pieChartSettings, // mock vcharts data
+      pieChartSettings: vChartsData.pieChartSettings, 
       pieChartData: vChartsData.pieChartData,
       lineChartData: vChartsData.lineChartData,
       lineChartSettings: vChartsData.lineChartSettings,
       lineChartData2: vChartsData.lineChartData2,
       lineChartSettings2: vChartsData.lineChartSettings2,
       histogramChartData: vChartsData.histogramChartData,
+      histogramChartExtend: vChartsData.histogramChartExtend
     };
   },
 };

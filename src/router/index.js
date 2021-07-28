@@ -16,10 +16,11 @@ files.keys().forEach((key) => {
 const defaultRoutes = [
   { path: "/", redirect: "/login" },
   { path: "/login", name: "登陆", component: () => import("@/views/login") },
+  { path: "*", name: "404", component: () => import("@/views/404") },
 ]
 
 // 拼装路由
-const routes = defaultRoutes.concat(configRouters)
+const routes = configRouters.concat(defaultRoutes)
 
 const router = new VueRouter({
   mode: "history",
@@ -33,7 +34,7 @@ VueRouter.prototype.replace = function replace(location) {
 }
 
 const originalPush = VueRouter.prototype.push;
-VueRouter.prototype.push= function push(location) {
+VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
 
