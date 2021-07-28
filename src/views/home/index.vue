@@ -2,11 +2,11 @@
   <el-card>
     <div id="home">
     <!-- 近30日浏览量和获赞量 --（柱状图）-->
-    <ve-line :data="lineChartData" :settings="lineChartSettings"></ve-line>
+    <ve-line :extend="lineChartExtend" :data="lineChartData" :settings="lineChartSettings"></ve-line>
     <!-- 文章分类 --（饼图） -->
     <ve-pie :data="pieChartData" :settings="pieChartSettings"></ve-pie>
     <!-- 近30日注册人数 --（人数统计） -->
-    <ve-line :data="lineChartData2" :settings="lineChartSettings2"></ve-line>
+    <ve-line :extend="lineChartExtend" :data="lineChartData2" :settings="lineChartSettings2"></ve-line>
     <!-- 近30日发布文章数量 --（折线图） -->
     <ve-histogram :data="histogramChartData"></ve-histogram>
   </div>
@@ -20,6 +20,7 @@ export default {
   name: "home",
   data() {
     return {
+      lineChartExtend: vChartsData.lineChartExtend,
       pieChartSettings: vChartsData.pieChartSettings, // mock vcharts data
       pieChartData: vChartsData.pieChartData,
       lineChartData: vChartsData.lineChartData,
