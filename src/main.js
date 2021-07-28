@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import { router } from "./router";
 import Element from "element-ui";
+import VCharts from "v-charts"
 import 'element-ui/lib/theme-chalk/index.css';
 import store from "@/store";
 import mavonEditor  from "mavon-editor"
@@ -11,6 +12,7 @@ window.bus = new Vue();
 
 Vue.use(mavonEditor)
 Vue.use(Element, { size: "small" })
+Vue.use(VCharts)
 
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key]);

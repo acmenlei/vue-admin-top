@@ -87,7 +87,8 @@ export default {
       try {
         const { code, msg } = await adminLogin(this.ruleForm);
         if ( code == 200) {
-          this.$store.dispatch('user/login'); // 处理本地cookie
+          this.$store.dispatch('user/login'); // 处理本地存储问题
+          this.$router.push("/home");
         } else {
           return errorMessage(msg);
         }

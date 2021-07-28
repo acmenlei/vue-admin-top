@@ -1,12 +1,13 @@
 import { Loading } from "element-ui";
 import { nProgress } from '../permission';
+import { LOADINGING } from "./tips"
 
 let loading = null;
 
 export const showLoading = () => {
   loading = Loading.service({
     lock: true,
-    text: "加载中……",
+    text: LOADINGING,
     background: 'rgba(0, 0, 0, 0.5)'
   })
   nProgress.start() // 开启进度显示
