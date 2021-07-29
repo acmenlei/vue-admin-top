@@ -30,6 +30,7 @@ export default {
 }
 .my-tag {
   margin-right: .2rem;
+  margin-top: .2rem;
 }
 #nprogress .bar {
   background: red !important;

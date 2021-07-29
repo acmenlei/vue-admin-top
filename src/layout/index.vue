@@ -7,11 +7,15 @@
         <el-main
           ><Breadcrumd />
           <!-- 路由缓存 -->
-          <router-view v-slot="{ Component }">
-            <keep-alive include="home">
+          <!-- <router-view v-slot="{ Component }">
+            <keep-alive include="/home">
               <component :is="Component" />
             </keep-alive> </router-view
-        ></el-main>
+        > -->
+          <keep-alive>
+            <router-view></router-view>
+          </keep-alive>
+        </el-main>
       </el-container>
     </el-container>
   </div>

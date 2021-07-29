@@ -5,20 +5,24 @@
       <el-form-item label="标题"
         ><el-input
           placeholder="输入标题查询"
-          v-model="filterConditions.title"
+          v-model="filterConditions.ll_title"
         ></el-input
       ></el-form-item>
       <el-form-item label="分类">
         <el-select
-          v-model="filterConditions.category"
-          placeholder="选择分类查询"
+          v-model="filterConditions.ll_category"
+          placeholder="文章分类"
         >
-          <el-option label="note" value="note"></el-option>
-          <el-option label="technical" value="technical"></el-option>
+          <el-option
+            v-for="category in categoryList"
+            :key="category.ll_id"
+            :label="category.ll_category_name"
+            :value="category.ll_category_name"
+          ></el-option>
         </el-select>
       </el-form-item>
       <el-form-item
-        ><el-button type="primary" @click="filterSearch"
+        ><el-button type="primary" @click="getArticleList"
           >查询</el-button
         ></el-form-item
       >
@@ -108,10 +112,10 @@
 
       <el-table-column align="center" fixed="right" label="操作" width="100">
         <template slot-scope="{ row }">
-          <el-button @click="editArticle(row)" type="text" size="small"
+          <el-button @click="editArticle(row.ll_id)" type="text" size="small"
             >编辑</el-button
           >
-          <el-button type="text" size="small" @click="deleteArticle(row)"
+          <el-button type="text" size="small" @click="deleteArticle(row.ll_id)"
             >删除</el-button
           >
         </template>
@@ -135,20 +139,23 @@
 
 <script>
 import ArticleListMock from "@/mock/article-list-mock";
-import { ARTICLE_EMPTY } from "@/common/tips";
-import { getArticleList } from "@/api/article";
-import { formatTags } from "@/filters/format"
+import { ARTICLE_EMPTY, OPERATOR_OK } from "@/common/tips";
+import { getArticleList, deleteArticleById } from "@/api/article";
+import { formatTags } from "@/filters/format";
+import ArticleConfig from "@/mixins/article";
+import { successMessage } from "@/common/message";
 
 export default {
   name: "article-list",
+  mixins: [ArticleConfig],
   data() {
     return {
       filterConditions: {
         // 模糊查询条件
         pageNum: 1,
         pageSize: 10,
-        title: null,
-        category: null,
+        ll_title: null,
+        ll_category: null,
       },
       total: 100, // 文章总数
       tableData: ArticleListMock,
@@ -160,27 +167,42 @@ export default {
     this.getArticleList();
   },
   methods: {
+    /* 获取文章信息 */
     async getArticleList() {
-      const { data, total } = await getArticleList(this.filterConditions);
+      const { data } = await getArticleList(this.filterConditions);
       this.tableData = formatTags(data); // 格式化tags
-      this.total = total;
+      this.total = 100;
     },
-    filterSearch() {
-      this.getArticleList();
-    },
+    /* 重置查询条件 */
     resetSearch() {
       this.filterConditions = {
         pageNum: 1,
         pageSize: 10,
-        title: null,
-        category: null,
+        ll_title: null,
+        ll_category: null,
       };
+      this.getArticleList();
     },
-    handleCurrentChange() {},
+    /* 分页处理 */
+    handleCurrentChange(pageNum) {
+      this.filterConditions.pageNum = pageNum;
+      this.getArticleList();
+    },
+    /* 编辑 */
     editArticle(id) {
       this.$router.push({ path: "/article/edit", query: { id } });
     },
-    deleteArticle() {},
+    /* 根据ID删除对应文章 */
+    async deleteArticle(id) {
+      try {
+        await this.$confirm("确定要删除吗？", "提示");
+        await deleteArticleById({ ll_id: id });
+        this.getArticleList(); // 重新拉取数据
+        successMessage(OPERATOR_OK); // 操作成功
+      } catch {
+        null;
+      }
+    },
   },
 };
 </script>

@@ -5,4 +5,4 @@ export const LOADINGING = "正在加载内容..."
 export const CANSEL = '已取消该操作'
 export const FORMAT_ERROR = '格式错误 只能选择png/jpg/jpeg格式的图片'
 export const FILE_SIZE_ERROR = '文件大小不能超过2MB'
-export const CONTENT_IS_EMPTY = '内容不能为空'
+export const OPERATOR_OK = '操作成功'
