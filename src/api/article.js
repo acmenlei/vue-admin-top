@@ -19,3 +19,11 @@ export function getArticleById(data) {
 export function deleteArticleById(data) {
     return post('/article/delete', data);
 }
+// 获取ststoken
+export function fileUpload() {
+    return post('/alioss/getToken');
+}
+// 文章发布或者更新
+export function articleOperator(data, suffix) {
+    return post(`/article/${suffix}`, data);
+}

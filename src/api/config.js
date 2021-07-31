@@ -1,6 +1,8 @@
 import axios from "axios";
 import { hideLoading, showLoading } from "@/common/loading";
 import { setToken, getToken, setUsername, getUsername } from '@/common/cookie';
+import { errorMessage } from '@/common/message';
+import { NETWORK_ERROR } from '@/common/tips';
 
 const baseURL = "http://localhost:3000";
 
@@ -21,7 +23,10 @@ instance.interceptors.request.use(
     }
     return config;
   },
-  (error) => Promise.reject(new Error(error))
+  (error) => {
+    errorMessage(NETWORK_ERROR)
+    Promise.reject(new Error(error))
+  }
 );
 /* 拦截相应 存储对应的token与username信息 */
 instance.interceptors.response.use(
@@ -37,6 +42,7 @@ instance.interceptors.response.use(
   },
   (error) => {
     hideLoading();
+    errorMessage(NETWORK_ERROR)
     Promise.reject(new Error(error));
   }
 );
@@ -54,6 +60,7 @@ export function get(url, params = {}) {
         }
       )
       .catch((error) => {
+        errorMessage(NETWORK_ERROR)
         reject(error);
       });
   });
@@ -72,6 +79,7 @@ export function post(url, data = {}) {
         }
       )
       .catch((error) => {
+        errorMessage(NETWORK_ERROR)
         reject(error);
       });
   });

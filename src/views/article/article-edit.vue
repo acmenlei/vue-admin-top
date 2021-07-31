@@ -71,11 +71,11 @@
 
 <script>
 import "mavon-editor/dist/css/index.css"; // 富文本编辑器css
-import { VALIDATE_ERROR } from "@/common/tips";
-import { errorMessage } from "@/common/message";
+import { VALIDATE_ERROR, OPERATOR_OK, OPERATOR_ERROR } from "@/common/tips";
+import { errorMessage, successMessage } from "@/common/message";
 import UploadImage from "@/components/uploadImage";
 import ArticleConfig from "@/mixins/article";
-import { getArticleById } from "@/api/article";
+import { getArticleById, articleOperator } from "@/api/article";
 
 export default {
   name: "edit",
@@ -144,6 +144,7 @@ export default {
       const { data } = await getArticleById({ ll_id: this.articleId });
       data.ll_tags = data.ll_tags.split(",");
       this.articleData = data; // 格式化标签
+      this.value = data.ll_content; // 初始化markdown编辑的内容
     },
     /* 上传成功 显示本地文件 */
     successUpload(url) {
@@ -159,11 +160,25 @@ export default {
     async publishArticle(formArticle) {
       try {
         await this.$refs[formArticle].validate();
-        // 给出后端需要的格式
-        const ll_tags = this.articleData.ll_tags.join(",");
-        console.log(ll_tags);
       } catch {
-        errorMessage(VALIDATE_ERROR);
+        return errorMessage(VALIDATE_ERROR);
+      }
+      try {
+        let article = Object.assign({}, this.articleData);
+        // 1. 给出后端需要的格式
+        article.ll_tags = article.ll_tags.join(",");
+        // 2. 判断是更新文章信息还是新增一篇文章
+        let suffix = this.articleId != null ? "update" : "publish";
+        // 3. 更新需要id用于where语句
+        suffix == "update" && (article.ll_id = this.articleId);
+        // 4. 发送请求
+        let { code } = await articleOperator(article, suffix);
+        if (code == 200) {
+          this.$router.replace({ path: "/article/list" });
+          successMessage(OPERATOR_OK);
+        }
+      } catch {
+        errorMessage(OPERATOR_ERROR);
       }
     },
   },

@@ -11,7 +11,7 @@ nProgress.configure({ showSpinner: false, easing: 'ease', speed: 500 })
 
 Vue.use(nProgress)  // 路由跳转进度
 
-const WHITE_LIST = ['/', '/login'];
+const WHITE_LIST = ['/login'];
 
 /* 守卫 */
 router.beforeEach(async (to, from, next) => {
@@ -29,6 +29,10 @@ router.beforeEach(async (to, from, next) => {
             return next()
         }
     } else {
+        // PS:如果根目录 直接跳转到登录页（然后会走上边的登录页拦截 有token就回到home）
+        if (path == '/') {
+            return next('/login');
+        }
         if (TOKEN && USERNAME) {
             /**
              * 1. 验证通过 放行
