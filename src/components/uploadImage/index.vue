@@ -16,6 +16,8 @@
 <script>
 import { FORMAT_ERROR, FILE_SIZE_ERROR } from "@/common/tips";
 import { errorMessage } from "@/common/message";
+import { fileUpload } from "@/api/article";
+import aliossUpload from "@/plugins/alioss";
 
 export default {
   name: "upload-image",
@@ -36,10 +38,12 @@ export default {
   },
   methods: {
     /* 自定义上传配置 */
-    requestCustom(config) {
-      console.log("文件上传的请求配置", config);
+    async requestCustom({ file }) {
       // 拿到封面绝对路径 暂时没写
-      this.$emit("success-upload", "xxx");
+      const { data } = await fileUpload();
+      const { credentials } = data;
+      const { res } = await aliossUpload(file, credentials);
+      this.$emit("success-upload", res.requestUrls[0]);
     },
     /* 上传前的文件类型以及文件大小校验 */
     beforeUpload({ type, size }) {
