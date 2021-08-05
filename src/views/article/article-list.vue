@@ -169,9 +169,9 @@ export default {
   methods: {
     /* 获取文章信息 */
     async getArticleList() {
-      const { data } = await getArticleList(this.filterConditions);
+      const { data, total } = await getArticleList(this.filterConditions);
       this.tableData = formatTags(data); // 格式化tags
-      this.total = 100;
+      this.total = total;
     },
     /* 重置查询条件 */
     resetSearch() {

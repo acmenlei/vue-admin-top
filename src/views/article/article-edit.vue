@@ -136,6 +136,7 @@ export default {
         ll_content: null,
         ll_content_html: null,
       };
+      this.value = "";
     }
   },
   methods: {
@@ -144,7 +145,7 @@ export default {
       const { data } = await getArticleById({ ll_id: this.articleId });
       data.ll_tags = data.ll_tags.split(",");
       this.articleData = data; // 格式化标签
-      this.value = data.ll_content; // 初始化markdown编辑的内容
+      this.value = data.ll_content || ""; // 初始化markdown编辑的内容
     },
     /* 上传成功 显示本地文件 */
     successUpload(url) {
