@@ -13,7 +13,7 @@
             </keep-alive> </router-view
         > -->
           <keep-alive>
-            <router-view></router-view>
+            <router-view class="router-animate"></router-view>
           </keep-alive>
         </el-main>
       </el-container>
@@ -48,5 +48,16 @@ main,
 footer,
 header {
   padding: 10px;
+}
+@keyframes animate {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.router-animate {
+  animation: animate .3s;
 }
 </style>

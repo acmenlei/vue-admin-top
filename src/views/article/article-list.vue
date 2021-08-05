@@ -110,14 +110,16 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" fixed="right" label="操作" width="100">
+      <el-table-column align="center" fixed="right" label="操作" width="150">
         <template slot-scope="{ row }">
-          <el-button @click="editArticle(row.ll_id)" type="text" size="small"
-            >编辑</el-button
-          >
-          <el-button type="text" size="small" @click="deleteArticle(row.ll_id)"
-            >删除</el-button
-          >
+          <el-button-group>
+            <el-button @click="editArticle(row.ll_id)" type="success"
+              >编辑</el-button
+            >
+            <el-button type="danger" @click="deleteArticle(row.ll_id)"
+              >删除</el-button
+            >
+          </el-button-group>
         </template>
       </el-table-column>
     </el-table>
