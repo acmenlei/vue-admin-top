@@ -9,16 +9,17 @@ import { errorMessage } from '@/common/message';
 
 nProgress.configure({ showSpinner: false, easing: 'ease', speed: 500 })
 
-Vue.use(nProgress)  // 路由跳转进度
+Vue.use(nProgress) // 路由跳转进度
 
 const WHITE_LIST = ['/login'];
 
 /* 守卫 */
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async(to, from, next) => {
     nProgress.start()
     let { path, name } = to
     window.bus.$emit("add-breadcrumb", { path, name })
-    const TOKEN = getToken(), USERNAME = getUsername();
+    const TOKEN = getToken(),
+        USERNAME = getUsername();
     /**
      * 白名单校验
      */
