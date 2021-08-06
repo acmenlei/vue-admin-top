@@ -1,17 +1,20 @@
 <template>
-  <div id="not-found">Not Found 404 未找到您的页面</div>
+  <div id="not-found">
+    <el-empty description="Not Found 404 未找到您想找的页面"></el-empty>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "404",
+  name: "not-found",
 };
 </script>
 
 <style scoped>
 #not-found {
-  height: 100vh;
-  padding-top: 1rem;
-  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>

@@ -15,9 +15,13 @@
 
 <script>
 import vChartsData from "@/mock/v-charts-mock";
+import { getCategoryGroup } from "@/api/home"
 
 export default {
   name: "home",
+  activated() {
+    this.getCategoryGroup(); // 对文章分类进行分组
+  },
   data() {
     return { // mock vcharts data
       lineChartExtend: vChartsData.lineChartExtend,
@@ -31,6 +35,12 @@ export default {
       histogramChartExtend: vChartsData.histogramChartExtend
     };
   },
+  methods: {
+    async getCategoryGroup() {
+      const { data } = await getCategoryGroup();
+      this.pieChartData.rows = data;
+    }
+  }
 };
 </script>
 <style scoped>

@@ -59,7 +59,7 @@
           type="primary"
           @click="publishArticle('form-article')"
         >
-          发布文章
+          {{ articleId ? '更新文章' : '发布文章' }}
         </el-button>
       </el-form-item>
       <el-form-item>
