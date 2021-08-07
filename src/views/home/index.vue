@@ -85,7 +85,7 @@ export default {
 #home {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
 }
 </style>

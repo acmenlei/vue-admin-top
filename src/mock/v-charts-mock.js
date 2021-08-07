@@ -9,30 +9,13 @@ export default {
     lineChartData: {
         columns: ["dayTime", "visitedCountBysite", "likedCountBysite", "loginCountBysite"],
         rows: [{
-                "articlePublishCountBysite": 1,
-                "dayTime": "2021-08-07",
-                "likedCountBysite": 5,
-                "loginCountBysite": 10,
-                "registerCountBysite": 10,
-                "visitedCountBysite": 206
-            },
-            {
-                "articlePublishCountBysite": 2,
-                "dayTime": "2021-08-08",
-                "likedCountBysite": 5,
-                "loginCountBysite": 10,
-                "registerCountBysite": 10,
-                "visitedCountBysite": 206
-            },
-            {
-                "articlePublishCountBysite": 5,
-                "dayTime": "2021-08-09",
-                "likedCountBysite": 5,
-                "loginCountBysite": 10,
-                "registerCountBysite": 10,
-                "visitedCountBysite": 206
-            },
-        ],
+            "articlePublishCountBysite": 1,
+            "dayTime": "2021-08-07",
+            "likedCountBysite": 5,
+            "loginCountBysite": 10,
+            "registerCountBysite": 10,
+            "visitedCountBysite": 206
+        }],
     },
     lineChartSettings: {
         // 值区域填充样式
@@ -46,10 +29,10 @@ export default {
     },
     lineChartExtend: {
         xAxis: {
-            boundaryGap: false,
+            boundaryGap: false, // 让x轴紧挨着y轴开始
             axisLabel
         },
-    }, // 让x轴紧挨着y轴开始
+    },
     lineChartData2: {
         columns: ["dayTime", "registerCountBysite"],
         rows: [
@@ -85,11 +68,12 @@ export default {
         labelMap: {
             dayTime: '日期',
             articlePublishCountBysite: '文章发布数量'
-        }
+        },
     },
     histogramChartExtend: {
         xAxis: {
             axisLabel
         },
+        color: '#FA6E86'
     }
 }
