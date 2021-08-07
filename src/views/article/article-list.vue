@@ -17,7 +17,7 @@
             v-for="category in categoryList"
             :key="category.ll_id"
             :label="category.ll_category_name"
-            :value="category.ll_category_name"
+            :value="category.ll_category_val"
           ></el-option>
         </el-select>
       </el-form-item>
@@ -58,6 +58,9 @@
         label="类型"
         width="120"
       >
+      <template slot-scope="{ row }">
+          <span>{{ row.ll_category | filterCategory }}</span>
+        </template>
       </el-table-column>
       <el-table-column align="center" prop="ll_tags" label="标签" width="200">
         <template slot-scope="{ row }">

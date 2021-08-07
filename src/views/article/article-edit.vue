@@ -18,7 +18,7 @@
             v-for="category in categoryList"
             :key="category.ll_id"
             :label="category.ll_category_name"
-            :value="category.ll_category_name"
+            :value="category.ll_category_val"
           ></el-option>
         </el-select>
       </el-form-item>

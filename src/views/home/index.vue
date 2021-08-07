@@ -28,6 +28,7 @@
 <script>
 import vChartsData from "@/mock/v-charts-mock";
 import { queryCategoryGroup, queryVisitedBythirtyDay } from "@/api/home";
+import { filterCategory } from "@/filters"
 
 export default {
   name: "home",
@@ -53,6 +54,10 @@ export default {
   methods: {
     async queryCategoryGroup() {
       const { data } = await queryCategoryGroup();
+      let length = data.length;
+      for (let i = 0; i < length; i++) {
+        data[i].ll_category = filterCategory(data[i].ll_category);
+      }
       this.pieChartData.rows = data;
     },
     async queryVisitedBythirtyDay() {
