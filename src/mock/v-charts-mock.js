@@ -7,19 +7,42 @@ export default {
         rows: [],
     },
     lineChartData: {
-        columns: ["日期", "访问量", "获赞量", "下单率"],
-        rows: [
-            { 日期: "2020/1/1", 访问量: 1393, 获赞量: 1093, 下单率: 0.32 },
-            { 日期: "2020/1/2", 访问量: 3530, 获赞量: 3230, 下单率: 0.26 },
-            { 日期: "2020/1/3", 访问量: 2923, 获赞量: 2623, 下单率: 0.76 },
-            { 日期: "2020/1/4", 访问量: 1723, 获赞量: 1423, 下单率: 0.49 },
-            { 日期: "2020/1/5", 访问量: 3792, 获赞量: 3492, 下单率: 0.323 },
-            { 日期: "2020/1/6", 访问量: 4593, 获赞量: 4293, 下单率: 0.78 },
+        columns: ["dayTime", "visitedCountBysite", "likedCountBysite", "loginCountBysite"],
+        rows: [{
+                "articlePublishCountBysite": 1,
+                "dayTime": "2021-08-07",
+                "likedCountBysite": 5,
+                "loginCountBysite": 10,
+                "registerCountBysite": 10,
+                "visitedCountBysite": 206
+            },
+            {
+                "articlePublishCountBysite": 2,
+                "dayTime": "2021-08-08",
+                "likedCountBysite": 5,
+                "loginCountBysite": 10,
+                "registerCountBysite": 10,
+                "visitedCountBysite": 206
+            },
+            {
+                "articlePublishCountBysite": 5,
+                "dayTime": "2021-08-09",
+                "likedCountBysite": 5,
+                "loginCountBysite": 10,
+                "registerCountBysite": 10,
+                "visitedCountBysite": 206
+            },
         ],
     },
     lineChartSettings: {
         // 值区域填充样式
         areaStyle,
+        labelMap: {
+            dayTime: '日期',
+            visitedCountBysite: '访问量',
+            likedCountBysite: '获赞量',
+            loginCountBysite: '登陆次数',
+        }
     },
     lineChartExtend: {
         xAxis: {
@@ -28,30 +51,41 @@ export default {
         },
     }, // 让x轴紧挨着y轴开始
     lineChartData2: {
-        columns: ["日期", "注册人数"],
+        columns: ["dayTime", "registerCountBysite"],
         rows: [
-            { 日期: "2020/1/1", 注册人数: 1393 },
-            { 日期: "2020/1/2", 注册人数: 3530 },
-            { 日期: "2020/1/3", 注册人数: 2923 },
-            { 日期: "2020/1/4", 注册人数: 1723 },
-            { 日期: "2020/1/5", 注册人数: 3792 },
-            { 日期: "2020/1/6", 注册人数: 4593 },
+            { dayTime: "2020/1/1", registerCountBysite: 1393 },
+            { dayTime: "2020/1/2", registerCountBysite: 3530 },
+            { dayTime: "2020/1/3", registerCountBysite: 2923 },
+            { dayTime: "2020/1/4", registerCountBysite: 1723 },
+            { dayTime: "2020/1/5", registerCountBysite: 3792 },
+            { dayTime: "2020/1/6", registerCountBysite: 4593 },
         ],
     },
     lineChartSettings2: {
         // 值区域填充样式
         areaStyle,
+        labelMap: {
+            dayTime: '日期',
+            registerCountBysite: '今日注册人数',
+        }
     },
     histogramChartData: {
-        columns: ["日期", "访问量", "获赞量", "获赞率"],
+        columns: ["dayTime", "articlePublishCountBysite"],
         rows: [
-            { 日期: "2020-1-1", 访问量: 1393, 获赞量: 1093, 获赞率: 0.32 },
-            { 日期: "2020-1-2", 访问量: 3530, 获赞量: 3230, 获赞率: 0.26 },
-            { 日期: "2020-1-3", 访问量: 2923, 获赞量: 2623, 获赞率: 0.76 },
-            { 日期: "2020-1-4", 访问量: 1723, 获赞量: 1423, 获赞率: 0.49 },
-            { 日期: "2020-1-5", 访问量: 3792, 获赞量: 3492, 获赞率: 0.323 },
-            { 日期: "2020-1-6", 访问量: 4593, 获赞量: 4293, 获赞率: 0.78 },
+            { dayTime: "2020-1-1", articlePublishCountBysite: 1393 },
+            { dayTime: "2020-1-2", articlePublishCountBysite: 3530 },
+            { dayTime: "2020-1-3", articlePublishCountBysite: 2923 },
+            { dayTime: "2020-1-4", articlePublishCountBysite: 1723 },
+            { dayTime: "2020-1-5", articlePublishCountBysite: 3792 },
+            { dayTime: "2020-1-6", articlePublishCountBysite: 4593 },
         ],
+    },
+    histogramChartSettings: {
+        // 值区域填充样式
+        labelMap: {
+            dayTime: '日期',
+            articlePublishCountBysite: '文章发布数量'
+        }
     },
     histogramChartExtend: {
         xAxis: {

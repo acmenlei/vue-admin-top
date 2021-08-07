@@ -1,5 +1,9 @@
-import {get } from "@/api/config";
+import {get, post } from "@/api/config";
 
-export function getCategoryGroup() {
-    return get('/visual/getCategoryGroup');
+export function queryCategoryGroup() {
+    return get('/visual/queryCategoryGroup');
+}
+
+export function queryVisitedBythirtyDay(data) {
+    return post('/visual/queryVisitedBythirtyDay', data);
 }

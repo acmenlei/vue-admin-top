@@ -33,6 +33,6 @@ export default {
   margin-top: .2rem;
 }
 #nprogress .bar {
-  background: green !important;
+  background: #78C951 !important;
 }
 </style>
