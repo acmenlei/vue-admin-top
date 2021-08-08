@@ -62,10 +62,12 @@ export default {
     async queryCategoryGroup() {
       const { data } = await queryCategoryGroup();
       let length = data.length;
-      for (let i = 0; i < length; i++) {
+      setTimeout(() => { // 异步更新
+       for (let i = 0; i < length; i++) {
         data[i].ll_category = filterCategory(data[i].ll_category, this.categoryList);
       }
-      this.pieChartData.rows = data;
+      this.pieChartData.rows = data; 
+      });
     },
     async queryVisitedBythirtyDay() {
       const { data } = await queryVisitedBythirtyDay({
