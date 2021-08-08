@@ -59,7 +59,7 @@
         width="120"
       >
       <template slot-scope="{ row }">
-          <span>{{ row.ll_category | filterCategory }}</span>
+          <el-link :type="TAG_COLORS[Math.floor(Math.random()*6)]">{{ row.ll_category | filterCategory(categoryList) }}</el-link>
         </template>
       </el-table-column>
       <el-table-column align="center" prop="ll_tags" label="标签" width="200">
@@ -168,7 +168,7 @@ export default {
     };
   },
   inject: ["TAG_COLORS"], // 接收标签颜色
-  mounted() {
+  activated() {
     this.getArticleList();
   },
   methods: {

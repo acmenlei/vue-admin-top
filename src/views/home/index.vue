@@ -28,11 +28,13 @@
 <script>
 import vChartsData from "@/mock/v-charts-mock";
 import { queryCategoryGroup, queryVisitedBythirtyDay } from "@/api/home";
+import { getArticleCategorys } from "@/api/article";
 import { filterCategory } from "@/filters"
 
 export default {
   name: "home",
   activated() {
+    this.getArticleCategorys(); // 查询所有类别
     this.queryCategoryGroup(); // 对文章分类进行分组
     this.queryVisitedBythirtyDay(); // 查询近30天的网站数据
   },
@@ -49,14 +51,19 @@ export default {
       histogramChartData: vChartsData.histogramChartData,
       histogramChartExtend: vChartsData.histogramChartExtend,
       histogramChartSettings: vChartsData.histogramChartSettings,
+      categoryList: []
     };
   },
   methods: {
+    async getArticleCategorys() {
+      const { data } = await getArticleCategorys();
+      this.categoryList = data;
+    },
     async queryCategoryGroup() {
       const { data } = await queryCategoryGroup();
       let length = data.length;
       for (let i = 0; i < length; i++) {
-        data[i].ll_category = filterCategory(data[i].ll_category);
+        data[i].ll_category = filterCategory(data[i].ll_category, this.categoryList);
       }
       this.pieChartData.rows = data;
     },
