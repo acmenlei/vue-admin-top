@@ -3,7 +3,7 @@ export default {
     path: "/category",
     name: "分类管理",
     onlyOne: false,
-    icon: "el-icon-edit-outline",
+    icon: "el-icon-s-data",
     component: layout,
     children: [{
             path: "/category/list",

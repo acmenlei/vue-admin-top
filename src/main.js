@@ -5,22 +5,21 @@ import Element from "element-ui";
 import VCharts from "v-charts"
 import 'element-ui/lib/theme-chalk/index.css';
 import store from "@/store";
-import mavonEditor  from "mavon-editor"
+import mavonEditor from "mavon-editor"
 import * as filters from "@/filters" // 全局注册
 
 window.bus = new Vue();
 
 Vue.use(mavonEditor)
-Vue.use(Element, { size: "small" })
+Vue.use(Element, { size: "mini" })
 Vue.use(VCharts)
 
 Object.keys(filters).forEach(key => {
-  Vue.filter(key, filters[key]);
+    Vue.filter(key, filters[key]);
 })
 
 new Vue({
-  render: (h) => h(App),
-  store,
-  router,
+    render: (h) => h(App),
+    store,
+    router,
 }).$mount("#app")
-

@@ -28,8 +28,8 @@
           <el-checkbox
             v-for="tag in tagList"
             :key="tag.ll_id"
-            :label="tag.ll_tag_name"
-          ></el-checkbox>
+            :label="tag.ll_tag_val"
+          >{{tag.ll_tag_name}}</el-checkbox>
         </el-checkbox-group>
       </el-form-item>
       <el-form-item label="简介" prop="ll_introduce">
@@ -78,7 +78,7 @@ import ArticleConfig from "@/mixins/article";
 import { getArticleById, articleOperator } from "@/api/article";
 
 export default {
-  name: "edit",
+  name: "article-edit",
   mixins: [ArticleConfig],
   components: { UploadImage },
   data() {
@@ -122,7 +122,7 @@ export default {
       return this.$route.query.id;
     },
   },
-  activated() {
+  mounted() {
     if (this.articleId != undefined) {
       // 1. 根据id获取对应的文章
       this.getArticleById();

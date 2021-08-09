@@ -12,4 +12,14 @@ function filterCategory(val, origin) {
         }
     }
 }
-export { filterDateFormat, filterCategory }
+
+function filterTag(val, origin) {
+    let length = origin.length;
+    for (let i = 0; i < length; i++) {
+        if (origin[i].ll_tag_val == val) {
+            return origin[i].ll_tag_name;
+        }
+    }
+}
+
+export { filterDateFormat, filterCategory, filterTag }

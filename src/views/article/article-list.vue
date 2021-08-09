@@ -69,7 +69,7 @@
             v-for="(tag, index) in row.ll_tags"
             :type="TAG_COLORS[index]"
             :key="index"
-            >{{ tag }}</el-tag
+            >{{ tag | filterTag(tagList) }}</el-tag
           >
         </template>
       </el-table-column>
