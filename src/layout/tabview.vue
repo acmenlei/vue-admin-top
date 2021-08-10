@@ -61,6 +61,7 @@ export default {
   },
   created() {
     this.queryPermissions();
+    console.log(this.permissions);
   },
   computed: {
     ...mapGetters("permission", ["permissions"]),
