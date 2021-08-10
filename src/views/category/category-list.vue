@@ -49,13 +49,13 @@
           {{ row.ll_updatedTime | filterDateFormat }}
         </template>
       </el-table-column>
-      <el-table-column align="center" fixed="right" label="操作" width="150">
+      <el-table-column align="center" fixed="right" label="操作" width="180">
         <template slot-scope="{ row }">
           <el-button-group>
-            <el-button @click="editCategory(row.ll_id)" type="success"
+            <el-button icon="el-icon-edit" @click="editCategory(row.ll_id)" type="success"
               >编辑</el-button
             >
-            <el-button type="danger" @click="deleteCategoryById(row.ll_id)"
+            <el-button icon="el-icon-delete" type="danger" @click="deleteCategoryById(row.ll_id)"
               >删除</el-button
             >
           </el-button-group>

@@ -4,21 +4,28 @@
       :uniqueOpened="true"
       class="el-menu-vertical-demo"
       background-color="var(--theme)"
-      style="height: 100vh;"
+      style="height: 100vh"
       router
     >
       <div v-for="(route, index) in routes" :key="index">
         <!-- 多个路由嵌套 -->
-        <el-submenu v-if="!route.onlyOne" :index="route.path">
+        <el-submenu
+          v-if="
+            !route.meta.onlyOne && permissions && permissions.includes(route.meta.code)
+          "
+          :index="route.path"
+        >
           <template #title>
-            <i :class="route.icon"></i>
+            <i :class="route.meta.icon"></i>
             <span>{{ route.name }}</span>
           </template>
           <el-menu-item
             v-for="(croute, j) in route.children"
             :key="j"
             :index="croute.path"
-            v-show="!croute.hidden"
+            v-show="
+              !croute.meta.hidden && permissions && permissions.includes(croute.meta.code)
+            "
           >
             <i :class="croute.icon"></i>{{ croute.name }}</el-menu-item
           >
@@ -29,7 +36,9 @@
           v-for="(croute, j) in route.children"
           :key="j"
           :index="croute.path"
-          v-show="!croute.hidden"
+          v-show="
+            !croute.meta.hidden && permissions && permissions.includes(croute.meta.code)
+          "
         >
           <i :class="croute.icon"></i>{{ croute.name }}
         </el-menu-item>
@@ -39,13 +48,29 @@
 </template>
 <script>
 import { configRouters } from "@/router/index.js";
+import { mapGetters } from "vuex";
+import { queryPermissions } from "@/api/permission";
+import { getUsername } from "@/common/cookie";
+
 export default {
   name: "App",
-  data () {
-      return {
-          routes: configRouters ,
-      }
+  data() {
+    return {
+      routes: configRouters,
+    };
   },
- 
+  created() {
+    this.queryPermissions();
+  },
+  computed: {
+    ...mapGetters("permission", ["permissions"]),
+  },
+  methods: {
+    async queryPermissions() {
+      const ll_username = getUsername(); // 此处肯定有用户名 因为已经登录过了
+      const { permissions } = await queryPermissions({ ll_username });
+      this.$store.dispatch("permission/permissionOperator", permissions);
+    },
+  },
 };
 </script>

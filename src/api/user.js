@@ -8,6 +8,6 @@ export function adminLoginOut(data) {
     return post('/admin/loginout', data)
 }
 
-export function adminVerify() {
-    return post('/admin/verify');
+export function adminVerify(data) {
+    return post('/admin/verify', data);
 }

@@ -93,7 +93,6 @@ export default {
           return errorMessage(msg);
         }
       } catch(e) {
-        console.log(e);
         errorMessage(NETWORK_ERROR);
       }
     },

@@ -9,3 +9,4 @@ export const FORMAT_ERROR = '格式错误 只能选择png/jpg/jpeg格式的图�
 export const FILE_SIZE_ERROR = '文件大小不能超过2MB'
 export const OPERATOR_OK = '操作成功'
 export const OPERATOR_ERROR = '操作失败'
+export const NO_PERMISSION = '您没有权限访问此区域 请找管理员解决'

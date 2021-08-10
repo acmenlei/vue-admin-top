@@ -1,17 +1,22 @@
 import layout from "@/layout";
 export default {
-  path: "/",
-  name: "",
-  onlyOne: true,
-  icon:"el-icon-s-platform",
-  component: layout,
-  children: [
-    {
-      path: "/home",
-      hidden: false,
-      name: "工作台",
-      icon:"el-icon-s-shop",
-      component: () => import("@/views/home"),
-    }
-  ],
+    path: "/",
+    name: "",
+    meta: {
+        onlyOne: true,
+        code: "workTower",
+        icon: "el-icon-s-platform"
+    },
+    component: layout,
+    children: [{
+        path: "/home",
+        name: "工作台",
+        meta: {
+            hidden: false,
+            code: 'workTower',
+            icon: "el-icon-s-shop",
+        },
+        component: () =>
+            import("@/views/home"),
+    }],
 };
