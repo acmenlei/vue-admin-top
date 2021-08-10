@@ -27,7 +27,7 @@
               !croute.meta.hidden && permissions && permissions.includes(croute.meta.code)
             "
           >
-            <i :class="croute.icon"></i>{{ croute.name }}</el-menu-item
+            <i :class="croute.meta.icon"></i>{{ croute.name }}</el-menu-item
           >
         </el-submenu>
         <!-- 单个路由 -->
@@ -40,7 +40,7 @@
             !croute.meta.hidden && permissions && permissions.includes(croute.meta.code)
           "
         >
-          <i :class="croute.icon"></i>{{ croute.name }}
+          <i :class="croute.meta.icon"></i>{{ croute.name }}
         </el-menu-item>
       </div>
     </el-menu>
@@ -61,7 +61,6 @@ export default {
   },
   created() {
     this.queryPermissions();
-    console.log(this.permissions);
   },
   computed: {
     ...mapGetters("permission", ["permissions"]),
