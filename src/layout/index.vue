@@ -12,7 +12,7 @@
               <component :is="Component" />
             </keep-alive> </router-view
         > -->
-          <keep-alive :exclude="['category-edit', 'tag-edit', 'article-edit']">
+          <keep-alive :exclude="['category-edit', 'tag-edit', 'article-edit', 'user-edit']">
             <router-view class="router-animate"></router-view>
           </keep-alive>
         </el-main>

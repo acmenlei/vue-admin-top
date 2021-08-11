@@ -1,7 +1,7 @@
 import layout from "@/layout";
 export default {
     path: "/user",
-    name: "用户管理",
+    name: "用户权限管理",
     meta: {
         code: "userManage",
         onlyOne: false,
@@ -23,7 +23,7 @@ export default {
             path: "/user/edit",
             name: "新增用户",
             meta: {
-                hidden: false,
+                hidden: true,
                 code: "userEdit",
                 icon: "el-icon-s-tools",
             },

@@ -33,7 +33,7 @@ instance.interceptors.response.use(
   (config) => {
     const { url } = config.config;
     const { headers, data } = config;
-    if (['/admin/login', '/admin/register'].includes(url)) {
+    if (['/admin/login'].includes(url)) {
       setToken(headers.token);
       setUsername(headers.username);
     }

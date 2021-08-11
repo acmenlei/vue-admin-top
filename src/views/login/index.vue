@@ -11,7 +11,7 @@
         <el-form-item>
           <h3>测试管理台</h3>
         </el-form-item>
-        <el-form-item prop="username">
+        <el-form-item prop="ll_username">
           <el-input
             v-model="ruleForm.ll_username"
             prefix-icon="el-icon-user"
@@ -19,7 +19,7 @@
           >
           </el-input>
         </el-form-item>
-        <el-form-item prop="password">
+        <el-form-item prop="ll_password">
           <el-input
             type="password"
             v-model="ruleForm.ll_password"
@@ -54,7 +54,7 @@ export default {
         ll_username: [
           {
             max: 11,
-            min: 11,
+            min: 5,
             message: "请输入有效的账号",
             trigger: "blur",
             required: true,

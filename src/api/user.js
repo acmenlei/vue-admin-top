@@ -11,3 +11,7 @@ export function adminLoginOut(data) {
 export function adminVerify(data) {
     return post('/admin/verify', data);
 }
+
+export function addAdminUser(data) {
+    return post('/admin/register', data);
+}
