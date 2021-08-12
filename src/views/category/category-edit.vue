@@ -65,11 +65,6 @@ export default {
     if (this.categoryId != undefined) {
       // 1. 根据id获取对应的文章
       this.queryCategoryById();
-    } else {
-      this.categoryData = {
-        ll_category_name: null,
-        ll_category_val: null,
-      };
     }
   },
   methods: {

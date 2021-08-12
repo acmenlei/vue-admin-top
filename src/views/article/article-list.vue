@@ -1,13 +1,11 @@
 <template>
   <el-card>
     <!-- 模糊查询 -->
-    <el-form inline :model="filterConditions" label-width="40px">
-      <el-form-item label="标题"
-        ><el-input
-          placeholder="输入标题查询"
-          v-model="filterConditions.ll_title"
-        ></el-input
-      ></el-form-item>
+    <!-- 过滤查询 -->
+    <el-form inline :model="filterConditions">
+      <el-form-item label="标题">
+        <el-input v-model="filterConditions.ll_title" placeholder="使用文章标题查询文章"></el-input>
+      </el-form-item>
       <el-form-item label="分类">
         <el-select
           v-model="filterConditions.ll_category"
@@ -21,16 +19,13 @@
           ></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item
-        ><el-button type="primary" @click="getArticleList"
-          >查询</el-button
-        ></el-form-item
-      >
-      <el-form-item
-        ><el-button type="default" @click="resetSearch"
-          >重置</el-button
-        ></el-form-item
-      >
+      <el-form-item>
+        <el-button-group>
+          <el-button icon="el-icon-search" type="primary" @click="queryArticleList">查询</el-button>
+          <el-button icon="el-icon-refresh-left" type="success" @click="resetSearch">重置</el-button>
+          <el-button icon="el-icon-circle-plus-outline" type="danger" @click="$router.push('/article/edit')">发表文章</el-button>
+        </el-button-group>
+      </el-form-item>
     </el-form>
 
     <!-- 表格数据 -->
@@ -145,7 +140,7 @@
 <script>
 import ArticleListMock from "@/mock/article-list-mock";
 import { ARTICLE_EMPTY, OPERATOR_OK } from "@/common/tips";
-import { getArticleList, deleteArticleById } from "@/api/article";
+import { queryArticleList, deleteArticleById } from "@/api/article";
 import { formatTags } from "@/filters/format";
 import ArticleConfig from "@/mixins/article";
 import { successMessage } from "@/common/message";
@@ -169,12 +164,12 @@ export default {
   },
   inject: ["TAG_COLORS"], // 接收标签颜色
   activated() {
-    this.getArticleList();
+    this.queryArticleList();
   },
   methods: {
     /* 获取文章信息 */
-    async getArticleList() {
-      const { data, total } = await getArticleList(this.filterConditions);
+    async queryArticleList() {
+      const { data, total } = await queryArticleList(this.filterConditions);
       this.tableData = formatTags(data); // 格式化tags
       this.total = total;
     },
@@ -186,12 +181,12 @@ export default {
         ll_title: null,
         ll_category: null,
       };
-      this.getArticleList();
+      this.queryArticleList();
     },
     /* 分页处理 */
     handleCurrentChange(pageNum) {
       this.filterConditions.pageNum = pageNum;
-      this.getArticleList();
+      this.queryArticleList();
     },
     /* 编辑 */
     editArticle(id) {
@@ -202,7 +197,7 @@ export default {
       try {
         await this.$confirm("确定要删除吗？", "提示");
         await deleteArticleById({ ll_id: id });
-        this.getArticleList(); // 重新拉取数据
+        this.queryArticleList(); // 重新拉取数据
         successMessage(OPERATOR_OK); // 操作成功
       } catch {
         null;

@@ -10,7 +10,7 @@ export default {
     component: layout,
     children: [{
             path: "/article/list",
-            name: "文章查看",
+            name: "文章列表",
             meta: {
                 hidden: false,
                 code: "articleList",
@@ -23,7 +23,7 @@ export default {
             path: "/article/edit",
             name: "发布文章",
             meta: {
-                hidden: false,
+                hidden: true,
                 code: "articleEdit",
                 icon: "el-icon-edit",
             },

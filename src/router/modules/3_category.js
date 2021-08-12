@@ -23,7 +23,7 @@ export default {
             path: "/category/edit",
             name: "新增分类",
             meta: {
-                hidden: false,
+                hidden: true,
                 code: "categoryEdit",
                 icon: "el-icon-edit",
             },

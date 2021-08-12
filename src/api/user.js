@@ -12,6 +12,14 @@ export function adminVerify(data) {
     return post('/admin/verify', data);
 }
 
-export function addAdminUser(data) {
-    return post('/admin/register', data);
+export function adminUserOperator(suffix, data) {
+    return post(`/admin/${suffix}`, data);
+}
+
+export function deleteAdminUserById(data) {
+    return post('/admin/delete', data)
+}
+
+export function queryAdminUserById(data) {
+    return post('/admin/single', data)
 }

@@ -56,7 +56,7 @@
 import { permissionRouters } from "../../permission";
 import { VALIDATE_ERROR } from "@/common/tips";
 import { errorMessage, successMessage } from "@/common/message";
-import { addAdminUser } from "@/api/user"
+import { adminUserOperator, queryAdminUserById } from "@/api/user"
 
 export default {
   name: "user-edit",
@@ -121,28 +121,44 @@ export default {
   },
   mounted() {
      if(this.userId != undefined) {
-        console.log("编辑用户信息");
+        this.queryAdminUserById()
      }
   },
   methods: {
-      async confirm(form) {
-         try {
-             await this.$refs[form].validate(); // 验证通过
-             let params = Object.assign({}, this.userInfo); // 拷贝数据 不影响原来的数据
-             params.ll_permission = params.ll_permission.join(',');
-             const { code, msg } = await addAdminUser(params);
-             if(code == 200) {
-                 successMessage(msg);
-                 return this.$router.back();
-             }
-             errorMessage(msg);
-         } catch {
-             return errorMessage(VALIDATE_ERROR)
-         }
-      },
-      checkPermissions(data, {checkedKeys, halfCheckedKeys}) {
-          this.userInfo.ll_permission = checkedKeys.concat(halfCheckedKeys);
-      }
+    async queryAdminUserById() {
+      const { data } = await queryAdminUserById({ ll_id: this.userId });
+      data.ll_permission = data.ll_permission.split(',');
+      let permissionMenus = []
+      // 过滤一级权限（排除工作台）
+      data.ll_permission.forEach(menuItem => {
+        if(this.treeNode.getNode(menuItem).level == 2 || menuItem == 'workTower') {
+          permissionMenus.push(menuItem)
+        }
+      });
+      // 设置权限菜单目录
+      this.treeNode.setCheckedKeys(permissionMenus);
+      this.userInfo = data;
+    },
+    async confirm(form) {
+        try {
+            await this.$refs[form].validate(); // 验证通过
+            let params = Object.assign({}, this.userInfo); // 拷贝数据 不影响原来的数据
+            params.ll_permission = params.ll_permission.join(',');
+            // 判断是编辑还是新增
+            let suffix = this.userId != undefined ? 'update' : 'register';
+            const { code, msg } = await adminUserOperator(suffix, params);
+            if(code == 200) {
+                successMessage(msg);
+                return this.$router.back();
+            }
+            errorMessage(msg);
+        } catch {
+            return errorMessage(VALIDATE_ERROR)
+        }
+    },
+    checkPermissions(data, {checkedKeys, halfCheckedKeys}) {
+        this.userInfo.ll_permission = checkedKeys.concat(halfCheckedKeys);
+    }
   }
 };
 </script>

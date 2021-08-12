@@ -84,7 +84,6 @@ export default {
   data() {
     return {
       value: "",
-
       articleData: {
         ll_title: null, // 标题
         ll_category: null, // 分类
@@ -126,17 +125,6 @@ export default {
     if (this.articleId != undefined) {
       // 1. 根据id获取对应的文章
       this.getArticleById();
-    } else {
-      this.articleData = {
-        ll_title: null,
-        ll_category: null,
-        ll_cover: null,
-        ll_tags: [],
-        ll_introduce: null,
-        ll_content: null,
-        ll_content_html: null,
-      };
-      this.value = "";
     }
   },
   methods: {
@@ -149,7 +137,6 @@ export default {
     },
     /* 上传成功 显示本地文件 */
     successUpload(url) {
-      // console.log(url);
       this.articleData.ll_cover = url;
     },
     /* 内容编辑 */

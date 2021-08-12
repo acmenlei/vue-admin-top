@@ -1,5 +1,21 @@
 <template>
   <el-card>
+    <!-- 过滤查询 -->
+    <el-form inline :model="filterConditions">
+      <el-form-item label="标签 ID">
+        <el-input v-model="filterConditions.ll_id" placeholder="使用ID查询标签"></el-input>
+      </el-form-item>
+      <el-form-item label="标签名">
+        <el-input v-model="filterConditions.ll_tag_name" placeholder="使用标签名查询标签"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button-group>
+          <el-button icon="el-icon-search" type="primary" @click="queryTagList">查询</el-button>
+          <el-button icon="el-icon-refresh-left" type="success" @click="resetTagList">重置</el-button>
+          <el-button icon="el-icon-circle-plus-outline" type="danger" @click="$router.push('/tag/edit')">新增标签</el-button>
+        </el-button-group>
+      </el-form-item>
+    </el-form>
     <!-- 表格数据 -->
     <el-table
       v-if="tableData.length"
@@ -92,6 +108,8 @@ export default {
         // 模糊查询条件
         pageNum: 1,
         pageSize: 10,
+        ll_id: null,
+        ll_tag_name: null
       },
       total: 100, // 文章总数
       tableData: [],
@@ -110,10 +128,12 @@ export default {
       this.total = total;
     },
     /* 重置查询条件 */
-    resetSearch() {
+    resetTagList() {
       this.filterConditions = {
         pageNum: 1,
         pageSize: 10,
+        ll_id: null,
+        ll_tag_name: null
       };
       this.queryTagList();
     },

@@ -23,7 +23,7 @@ export default {
             path: "/tag/edit",
             name: "新增标签",
             meta: {
-                hidden: false,
+                hidden: true,
                 code: "tagEdit",
                 icon: "el-icon-plus",
             },

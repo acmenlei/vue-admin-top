@@ -1,6 +1,6 @@
 import { post, get } from "@/api/config"
 
-export function getArticleList(data) {
+export function queryArticleList(data) {
     return post('/article/list', data)
 }
 

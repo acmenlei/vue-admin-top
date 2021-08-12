@@ -1,5 +1,21 @@
 <template>
   <el-card>
+    <!-- 过滤查询 -->
+    <el-form inline :model="filterConditions">
+      <el-form-item label="类别 ID">
+        <el-input v-model="filterConditions.ll_id" placeholder="使用ID查询分类"></el-input>
+      </el-form-item>
+      <el-form-item label="类别名称">
+        <el-input v-model="filterConditions.ll_category_name" placeholder="使用类别名查询分类"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button-group>
+          <el-button icon="el-icon-search" type="primary" @click="queryCategoryList">查询</el-button>
+          <el-button icon="el-icon-refresh-left" type="success" @click="resetCategoryList">重置</el-button>
+          <el-button icon="el-icon-circle-plus-outline" type="danger" @click="$router.push('/category/edit')">新增分类</el-button>
+        </el-button-group>
+      </el-form-item>
+    </el-form>
     <!-- 表格数据 -->
     <el-table
       v-if="tableData.length"
@@ -91,6 +107,8 @@ export default {
         // 模糊查询条件
         pageNum: 1,
         pageSize: 10,
+        ll_id: null,
+        ll_category_name: null
       },
       total: 100, // 文章总数
       tableData: [],
@@ -109,10 +127,12 @@ export default {
       this.total = total;
     },
     /* 重置查询条件 */
-    resetSearch() {
+    resetCategoryList() {
       this.filterConditions = {
         pageNum: 1,
         pageSize: 10,
+        ll_id: null,
+        ll_category_name: null
       };
       this.queryCategoryList();
     },

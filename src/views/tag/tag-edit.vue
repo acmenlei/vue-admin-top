@@ -65,11 +65,6 @@ export default {
     if (this.tagId != undefined) {
       // 1. 根据id获取对应的文章
       this.queryTagById();
-    } else {
-      this.tagData = {
-        ll_tag_name: null,
-        ll_tag_val: null,
-      };
     }
   },
   methods: {
