@@ -1,4 +1,4 @@
-import { post } from "@/api/config"
+import { post, get } from "@/api/config"
 
 // 查询权限
 export function queryPermissions(data) {
@@ -18,4 +18,9 @@ export function queryUserById(data) {
 // 分配权限
 export function allocationPermissions(data) {
     return post('/permission/allocationPermissions', data);
+}
+
+// 查询所有权限
+export function queryAllPermissions() {
+    return get('/permission/queryAllPermissions')
 }

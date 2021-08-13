@@ -3,7 +3,6 @@
     <el-menu
       :uniqueOpened="true"
       class="el-menu-vertical-demo"
-      background-color="var(--theme)"
       style="height: 100vh"
       router
     >
@@ -59,7 +58,7 @@ export default {
       routes: configRouters,
     };
   },
-  created() {
+  beforeMount() {
     this.queryPermissions();
   },
   computed: {

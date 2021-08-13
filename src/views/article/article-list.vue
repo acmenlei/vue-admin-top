@@ -23,7 +23,7 @@
         <el-button-group>
           <el-button icon="el-icon-search" type="primary" @click="queryArticleList">查询</el-button>
           <el-button icon="el-icon-refresh-left" type="success" @click="resetSearch">重置</el-button>
-          <el-button icon="el-icon-circle-plus-outline" type="danger" @click="$router.push('/article/edit')">发表文章</el-button>
+          <el-button v-permission="'articleEdit'" icon="el-icon-circle-plus-outline" type="danger" @click="$router.push('/article/edit')">发表文章</el-button>
         </el-button-group>
       </el-form-item>
     </el-form>
@@ -111,10 +111,10 @@
       <el-table-column align="center" fixed="right" label="操作" width="180">
         <template slot-scope="{ row }">
           <el-button-group>
-            <el-button icon="el-icon-edit" @click="editArticle(row.ll_id)" type="success"
+            <el-button v-permission="'articleEdit'" icon="el-icon-edit" @click="editArticle(row.ll_id)" type="success"
               >编辑</el-button
             >
-            <el-button icon="el-icon-delete" type="danger" @click="deleteArticle(row.ll_id)"
+            <el-button v-permission="'articleDelete'" icon="el-icon-delete" type="danger" @click="deleteArticle(row.ll_id)"
               >删除</el-button
             >
           </el-button-group>

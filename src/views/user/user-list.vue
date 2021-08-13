@@ -12,7 +12,7 @@
         <el-button-group>
           <el-button icon="el-icon-search" type="primary" @click="queryUserPermissionList">查询</el-button>
           <el-button icon="el-icon-refresh-left" type="success" @click="resetUserList">重置</el-button>
-          <el-button icon="el-icon-circle-plus-outline" type="danger" @click="$router.push('/user/edit')">新增角色</el-button>
+          <el-button v-permission="['userEdit', 'allocationPermission']" icon="el-icon-circle-plus-outline" type="danger" @click="$router.push('/user/edit')">新增角色</el-button>
         </el-button-group>
       </el-form-item>
     </el-form>
@@ -31,9 +31,10 @@
       <el-table-column align="center" label="操作" fixed="right" width="270">
         <template slot-scope="{row}">
           <el-button-group>
-          <el-button type="primary" @click="$router.push({ path: '/user/edit', query: { userId: row.ll_id } })" icon="el-icon-edit">编辑</el-button>
-          <el-button type="danger" @click="delteUser(row.ll_id)" icon="el-icon-delete">删除</el-button>
+          <el-button v-permission="['userEdit', 'allocationPermission']" type="primary" @click="$router.push({ path: '/user/edit', query: { userId: row.ll_id } })" icon="el-icon-edit">编辑</el-button>
+          <el-button v-permission="'userDelete'" type="danger" @click="delteUser(row.ll_id)" icon="el-icon-delete">删除</el-button>
           <el-button
+            v-permission="'allocationPermission'"
             @click="selectModalbox(row.ll_id)"
             type="warning"
             icon="el-icon-setting"
@@ -77,15 +78,15 @@
 <script>
 import { queryUserPermissionList, queryUserById, allocationPermissions } from "@/api/permission";
 import { deleteAdminUserById } from "@/api/user"
-import { permissionRouters } from "../../permission"
 import { errorMessage, successMessage } from "@/common/message"
 import { OPERATOR_OK, ADMIN_EMPTY } from "@/common/tips"
+import permission from "@/mixins/permission"
 
 export default {
   name: "user-list",
+  mixins: [permission],
   data() {
     return {
-      permissionRouters,
       tableData: [],
       dialogVisible: false,
       filterConditions: {
@@ -95,15 +96,12 @@ export default {
         ll_id: null
       },
       total: 0,
-      defaultProps: {
-        children: "ll_children",
-        label: "ll_permission_name",
-      },
       currentUserId: null, // 当前选择的用户Id
       ADMIN_EMPTY
     };
   },
   activated() {
+    this.queryAllPermissions()
     this.queryUserPermissionList();
   },
   computed: {

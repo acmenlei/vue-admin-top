@@ -53,20 +53,16 @@
 </template>
 
 <script>
-import { permissionRouters } from "../../permission";
 import { VALIDATE_ERROR } from "@/common/tips";
 import { errorMessage, successMessage } from "@/common/message";
 import { adminUserOperator, queryAdminUserById } from "@/api/user"
+import permission from "@/mixins/permission"
 
 export default {
   name: "user-edit",
+  mixins: [permission],
   data() {
     return {
-      permissionRouters,
-      defaultProps: {
-        children: "ll_children",
-        label: "ll_permission_name",
-      },
       userInfo: {
         ll_username: null,
         ll_password: null,
@@ -120,6 +116,7 @@ export default {
       }
   },
   mounted() {
+     this.queryAllPermissions()
      if(this.userId != undefined) {
         this.queryAdminUserById()
      }

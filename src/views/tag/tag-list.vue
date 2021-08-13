@@ -12,7 +12,7 @@
         <el-button-group>
           <el-button icon="el-icon-search" type="primary" @click="queryTagList">查询</el-button>
           <el-button icon="el-icon-refresh-left" type="success" @click="resetTagList">重置</el-button>
-          <el-button icon="el-icon-circle-plus-outline" type="danger" @click="$router.push('/tag/edit')">新增标签</el-button>
+          <el-button v-permission="'tagEdit'" icon="el-icon-circle-plus-outline" type="danger" @click="$router.push('/tag/edit')">新增标签</el-button>
         </el-button-group>
       </el-form-item>
     </el-form>
@@ -69,10 +69,10 @@
       <el-table-column align="center" fixed="right" label="操作" width="180">
         <template slot-scope="{ row }">
           <el-button-group>
-            <el-button icon="el-icon-edit" @click="editTag(row.ll_id)" type="success"
+            <el-button v-permission="'tagEdit'" icon="el-icon-edit" @click="editTag(row.ll_id)" type="success"
               >编辑</el-button
             >
-            <el-button icon="el-icon-delete" type="danger" @click="deleteTagById(row.ll_id)"
+            <el-button v-permission="'tagDelete'"  icon="el-icon-delete" type="danger" @click="deleteTagById(row.ll_id)"
               >删除</el-button
             >
           </el-button-group>
