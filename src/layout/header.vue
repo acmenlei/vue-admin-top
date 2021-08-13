@@ -1,7 +1,9 @@
 <template>
   <div id="myheader">
     <div class="title">测试管理台</div>
-    <el-dropdown>
+    <div class="right">
+      <screen-full />
+      <el-dropdown>
       <span class="el-dropdown-link">
         <el-avatar :size="30" :src="head" />
         <span>{{ username }}</span>
@@ -12,11 +14,13 @@
         </el-dropdown-menu>
       </template>
     </el-dropdown>
+    </div>
   </div>
 </template>
 
 <script>
 import { getUsername } from "@/common/cookie";
+import screenFull from "@/components/screenFull"
 
 export default {
   name: "myheader",
@@ -26,6 +30,7 @@ export default {
       head: "https://images.nowcoder.com/images/20180629/0_1530258288040_8455BFE79F1384FD927ADCA47F03E049",
     };
   },
+  components: { screenFull },
   methods: {
     async loginOut() {
       try {
@@ -52,5 +57,10 @@ export default {
 }
 #myheader span {
   margin-left: 0.5rem;
+}
+#myheader .right {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 </style>
