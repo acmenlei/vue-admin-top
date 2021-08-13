@@ -4,18 +4,18 @@
 
 ##### 项目模板结构
 - 网络请求与配置封装：`src/api/config`
-- 静态资源: src/assets
-- 公共逻辑(cookies&tips&loading): src/common
-- 公共组件: src/components
-- 全局过滤方法: src/filters
-- 布局封装以及菜单渲染：src/layout
-- 混合数据: src/mixins
-- 数据模拟: src/mock
-- 插件(v-charts&alioss): src/plugins
-- 动态路由拼装以及路由拦截处理：src/router
-- 全局状态管理：src/store
-- 页面文件：src/views
-- 权限逻辑处理：src/permission
+- 静态资源: `src/assets`
+- 公共逻辑(cookies&tips&loading): `src/common`
+- 公共组件: `src/components`
+- 全局过滤方法: `src/filters`
+- 布局封装以及菜单渲染：`src/layout`
+- 混合数据: `src/mixins`
+- 数据模拟: `src/mock`
+- 插件(v-charts&alioss): `src/plugins`
+- 动态路由拼装以及路由拦截处理：`src/router`
+- 全局状态管理：`src/store`
+- 页面文件：`src/views`
+- 权限逻辑处理：`src/permission`
 
 #### 2. 项目启动
 
