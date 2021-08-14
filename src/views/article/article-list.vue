@@ -84,7 +84,8 @@
       </el-table-column>
       <el-table-column align="center" prop="ll_cover" label="封面" width="200">
         <template slot-scope="{ row }">
-          <img height="100" :src="row.ll_cover" alt="" />
+          <view-image :src="row.ll_cover" />
+          <!-- <img height="100" :src="row.ll_cover" alt="" /> -->
         </template>
       </el-table-column>
       <el-table-column
@@ -144,10 +145,12 @@ import { queryArticleList, deleteArticleById } from "@/api/article";
 import { formatTags } from "@/filters/format";
 import ArticleConfig from "@/mixins/article";
 import { successMessage } from "@/common/message";
+import viewImage from "@/components/viewImage"
 
 export default {
   name: "article-list",
   mixins: [ArticleConfig],
+  components: { viewImage },
   data() {
     return {
       filterConditions: {

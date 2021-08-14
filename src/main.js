@@ -3,17 +3,20 @@ import App from "./App.vue";
 import { router } from "./router";
 import Element from "element-ui";
 import VCharts from "v-charts"
-import 'element-ui/lib/theme-chalk/index.css';
+import Viewer from "v-viewer";
 import store from "@/store";
 import mavonEditor from "mavon-editor"
 import * as filters from "@/filters" // 全局注册
 import Permission from "@/directives/permission"
+import 'element-ui/lib/theme-chalk/index.css';
+import "viewerjs/dist/viewer.css";
 
 window.bus = new Vue();
 
 Vue.use(mavonEditor)
 Vue.use(Element, { size: "mini" })
 Vue.use(VCharts)
+Vue.use(Viewer)
 Vue.use(Permission)
 
 Object.keys(filters).forEach(key => {

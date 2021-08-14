@@ -100,8 +100,10 @@ export default {
       ADMIN_EMPTY
     };
   },
+  mounted() {
+    this.queryAllPermissions();
+  },
   activated() {
-    this.queryAllPermissions()
     this.queryUserPermissionList();
   },
   computed: {
@@ -185,6 +187,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-</style>

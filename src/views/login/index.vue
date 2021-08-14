@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <el-card id="login">
+  <div id="login">
+    <el-card class="container">
       <el-form
         :model="ruleForm"
         :rules="rules"
@@ -9,7 +9,7 @@
         class="demo-ruleForm"
       >
         <el-form-item>
-          <h3>测试管理台</h3>
+          <h3>Vue后台管理系统解决方案</h3>
         </el-form-item>
         <el-form-item prop="ll_username">
           <el-input
@@ -86,13 +86,13 @@ export default {
       }
       try {
         const { code, msg } = await adminLogin(this.ruleForm);
-        if ( code == 200) {
-          this.$store.dispatch('user/login'); // 处理本地存储问题
+        if (code == 200) {
+          this.$store.dispatch("user/login"); // 处理本地存储问题
           this.$router.push("/home");
         } else {
           return errorMessage(msg);
         }
-      } catch(e) {
+      } catch (e) {
         errorMessage(NETWORK_ERROR);
       }
     },
@@ -100,23 +100,24 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
+<style lang="scss" scoped>
+#login {
   width: 100vw;
   height: 100vh;
   background: url("../../assets/images/background.jpg");
   background-size: 100% 100%;
-}
-#login {
-  width: 300px;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-right: 60px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+
+  .container {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 </style>

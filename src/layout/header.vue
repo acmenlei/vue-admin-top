@@ -1,26 +1,28 @@
 <template>
   <div id="myheader">
-    <div class="title">测试管理台</div>
+    <div class="title">Vue后台管理系统解决方案</div>
     <div class="right">
       <screen-full />
       <el-dropdown>
-      <span class="el-dropdown-link">
-        <el-avatar :size="30" :src="head" />
-        <span>{{ username }}</span>
-      </span>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item @click.native="loginOut">退出登陆</el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
-    </el-dropdown>
+        <span class="el-dropdown-link">
+          <el-avatar :size="30" :src="head" />
+          <span>{{ username }}</span>
+        </span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item @click.native="loginOut"
+              >退出登陆</el-dropdown-item
+            >
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </div>
   </div>
 </template>
 
 <script>
 import { getUsername } from "@/common/cookie";
-import screenFull from "@/components/screenFull"
+import screenFull from "@/components/screenFull";
 
 export default {
   name: "myheader",
@@ -43,7 +45,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 #myheader,
 #myheader .el-dropdown-link {
   display: flex;
@@ -54,13 +56,14 @@ export default {
 #myheader {
   width: 100%;
   background: var(--header);
-}
-#myheader span {
-  margin-left: 0.5rem;
-}
-#myheader .right {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+
+  span {
+    margin-left: 0.5rem;
+  }
+  .right {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
 }
 </style>
