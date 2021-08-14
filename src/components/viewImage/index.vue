@@ -18,8 +18,8 @@ export default {
 
 <style lang="scss" scoped>
 img {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   cursor: pointer;
 }
 </style>

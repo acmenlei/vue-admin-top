@@ -5,7 +5,6 @@
         :model="ruleForm"
         :rules="rules"
         ref="loginForm"
-        label-width="80px"
         class="demo-ruleForm"
       >
         <el-form-item>
@@ -15,7 +14,7 @@
           <el-input
             v-model="ruleForm.ll_username"
             prefix-icon="el-icon-user"
-            placeholder="请输入帐号"
+            placeholder="admin"
           >
           </el-input>
         </el-form-item>
@@ -24,7 +23,7 @@
             type="password"
             v-model="ruleForm.ll_password"
             prefix-icon="el-icon-lock"
-            placeholder="请输入密码"
+            placeholder="password"
           >
           </el-input>
         </el-form-item>
@@ -63,7 +62,7 @@ export default {
         ll_password: [
           {
             max: 16,
-            min: 8,
+            min: 5,
             message: "请输入有效的密码",
             trigger: "blur",
             required: true,
@@ -71,8 +70,8 @@ export default {
         ],
       },
       ruleForm: {
-        ll_username: "",
-        ll_password: "",
+        ll_username: "admin", // 测试号
+        ll_password: "admin",
       },
     };
   },
@@ -106,9 +105,9 @@ export default {
   height: 100vh;
   background: url("../../assets/images/background.jpg");
   background-size: 100% 100%;
-
+  transform-style: preserve-3d;
   .container {
-    width: 300px;
+    width: 320px;
     height: 300px;
     display: flex;
     justify-content: center;
@@ -118,6 +117,14 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    animation: rotate-animate .5s alternate;
+    border: none;
+    opacity: .9;
   }
+}
+
+@keyframes rotate-animate {
+  0% { transform: translate(-100%, -50%); }
+  100% { transform: translateX(-50%, -50%); }
 }
 </style>

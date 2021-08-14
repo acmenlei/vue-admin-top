@@ -4,7 +4,10 @@
     <!-- 过滤查询 -->
     <el-form inline :model="filterConditions">
       <el-form-item label="标题">
-        <el-input v-model="filterConditions.ll_title" placeholder="使用文章标题查询文章"></el-input>
+        <el-input
+          v-model="filterConditions.ll_title"
+          placeholder="使用文章标题查询文章"
+        ></el-input>
       </el-form-item>
       <el-form-item label="分类">
         <el-select
@@ -21,9 +24,25 @@
       </el-form-item>
       <el-form-item>
         <el-button-group>
-          <el-button icon="el-icon-search" type="primary" @click="queryArticleList">查询</el-button>
-          <el-button icon="el-icon-refresh-left" type="success" @click="resetSearch">重置</el-button>
-          <el-button v-permission="'articleEdit'" icon="el-icon-circle-plus-outline" type="danger" @click="$router.push('/article/edit')">发表文章</el-button>
+          <el-button
+            icon="el-icon-search"
+            type="primary"
+            @click="queryArticleList"
+            >查询</el-button
+          >
+          <el-button
+            icon="el-icon-refresh-left"
+            type="success"
+            @click="resetSearch"
+            >重置</el-button
+          >
+          <el-button
+            v-permission="'articleEdit'"
+            icon="el-icon-circle-plus-outline"
+            type="danger"
+            @click="$router.push('/article/edit')"
+            >发表文章</el-button
+          >
         </el-button-group>
       </el-form-item>
     </el-form>
@@ -38,7 +57,14 @@
       laod
       style="width: 100%"
     >
+    <el-table-column align="center" prop="ll_id" label="编号" width="120">
+      </el-table-column>
       <el-table-column align="center" prop="ll_title" label="标题" width="150">
+      </el-table-column>
+      <el-table-column align="center" prop="ll_cover" label="封面" width="120">
+        <template slot-scope="{ row }">
+          <view-image :src="row.ll_cover" />
+        </template>
       </el-table-column>
       <el-table-column
         align="center"
@@ -53,11 +79,13 @@
         label="类型"
         width="120"
       >
-      <template slot-scope="{ row }">
-          <el-link :type="TAG_COLORS[Math.floor(Math.random()*6)]">{{ row.ll_category | filterCategory(categoryList) }}</el-link>
+        <template slot-scope="{ row }">
+          <el-link :type="TAG_COLORS[Math.floor(Math.random() * 6)]">{{
+            row.ll_category | filterCategory(categoryList)
+          }}</el-link>
         </template>
       </el-table-column>
-      <el-table-column align="center" prop="ll_tags" label="标签" width="200">
+      <el-table-column align="center" prop="ll_tags" label="标签">
         <template slot-scope="{ row }">
           <el-tag
             class="my-tag"
@@ -81,12 +109,6 @@
         label="访问量"
         width="100"
       >
-      </el-table-column>
-      <el-table-column align="center" prop="ll_cover" label="封面" width="200">
-        <template slot-scope="{ row }">
-          <view-image :src="row.ll_cover" />
-          <!-- <img height="100" :src="row.ll_cover" alt="" /> -->
-        </template>
       </el-table-column>
       <el-table-column
         align="center"
@@ -112,10 +134,18 @@
       <el-table-column align="center" fixed="right" label="操作" width="180">
         <template slot-scope="{ row }">
           <el-button-group>
-            <el-button v-permission="'articleEdit'" icon="el-icon-edit" @click="editArticle(row.ll_id)" type="success"
+            <el-button
+              v-permission="'articleEdit'"
+              icon="el-icon-edit"
+              @click="editArticle(row.ll_id)"
+              type="success"
               >编辑</el-button
             >
-            <el-button v-permission="'articleDelete'" icon="el-icon-delete" type="danger" @click="deleteArticle(row.ll_id)"
+            <el-button
+              v-permission="'articleDelete'"
+              icon="el-icon-delete"
+              type="danger"
+              @click="deleteArticle(row.ll_id)"
               >删除</el-button
             >
           </el-button-group>
@@ -145,7 +175,7 @@ import { queryArticleList, deleteArticleById } from "@/api/article";
 import { formatTags } from "@/filters/format";
 import ArticleConfig from "@/mixins/article";
 import { successMessage } from "@/common/message";
-import viewImage from "@/components/viewImage"
+import viewImage from "@/components/viewImage";
 
 export default {
   name: "article-list",

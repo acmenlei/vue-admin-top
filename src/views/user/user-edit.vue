@@ -83,7 +83,7 @@ export default {
         ll_password: [
           {
             max: 16,
-            min: 8,
+            min: 5,
             message: "请输入有效的密码",
             trigger: "blur",
             required: true,
