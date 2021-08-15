@@ -20,7 +20,7 @@
     <el-table border v-if="tableData.length" :data="tableData" style="width: 100%">
       <el-table-column label="权限" align="center" type="expand">
         <template slot-scope="{ row }">
-          <el-tree :data="row.ll_permission" :props="defaultProps"></el-tree>
+          <el-tree default-expand-all :data="row.ll_permission" :props="defaultProps"></el-tree>
         </template>
       </el-table-column>
       <el-table-column align="center" label="用户 ID" prop="ll_id"> </el-table-column>
