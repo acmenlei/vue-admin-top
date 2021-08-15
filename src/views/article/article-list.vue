@@ -80,9 +80,9 @@
         width="120"
       >
         <template slot-scope="{ row }">
-          <el-link :type="TAG_COLORS[Math.floor(Math.random() * 6)]">{{
+          <el-tag size="small" effect="dark" :type="TAG_COLORS[Math.floor(Math.random() * 6)]">{{
             row.ll_category | filterCategory(categoryList)
-          }}</el-link>
+          }}</el-tag>
         </template>
       </el-table-column>
       <el-table-column align="center" prop="ll_tags" label="标签">
