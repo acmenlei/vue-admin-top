@@ -19,7 +19,7 @@ function hasPermissions(permissionCode) {
     })
 }
 /* 定义全局权限指令 */
-function defineDerective(Vue) {
+function defineDirective(Vue) {
     Vue.directive('permission', {
         inserted: async function (el, binding) {
             if (!await hasPermissions(binding.value)) {
@@ -31,6 +31,6 @@ function defineDerective(Vue) {
 
 export default {
     install: (Vue) => {
-        defineDerective(Vue);
+        defineDirective(Vue);
     }
 }
