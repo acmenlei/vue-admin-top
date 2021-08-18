@@ -1,5 +1,8 @@
 #### 1. 项目简介
 `Vue`后台管理系统, 内容写的是博客的管理台模板, 带数据中台和权限管理, 可用于学习, 也可根据自身需求改善, 好维护, 该项目需要配合`node-admin-backend`后台食用, 后台用的是`Nodejs`, 数据库`MySQL` + `Redis`, 所以你需要在掌握这些基本技能之前学习该项目。
+
+[浏览项目(暂未部署后端)](https://codeleilei.gitee.io/vue-admin-top/#/login)
+
 #### 主要框架：Vue2 + Element-ui + Axios + Nodejs + Redis + MySQL
 
 ##### 项目模板结构
