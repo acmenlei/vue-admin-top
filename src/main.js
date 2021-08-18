@@ -14,7 +14,7 @@ import "viewerjs/dist/viewer.css";
 window.bus = new Vue();
 
 Vue.use(mavonEditor)
-Vue.use(Element, { size: "mini" })
+Vue.use(Element, { size: "small" })
 Vue.use(VCharts)
 Vue.use(Viewer)
 Vue.use(Permission)
