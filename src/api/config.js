@@ -4,7 +4,7 @@ import { setToken, getToken, setUsername, getUsername } from '@/common/cookie';
 import { errorMessage } from '@/common/message';
 import { NETWORK_ERROR } from '@/common/tips';
 
-const baseURL = "http://localhost:3000";
+const baseURL = process.env.VUE_APP_BASE_URL;
 
 const instance = axios.create({
   baseURL,

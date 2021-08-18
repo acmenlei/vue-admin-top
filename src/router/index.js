@@ -29,7 +29,7 @@ const defaultRoutes = [
 const routes = configRouters.concat(defaultRoutes)
 
 const router = new VueRouter({
-    mode: "history",
+    mode: process.env.VUE_APP_ROUTE_MODE,
     routes,
 })
 
