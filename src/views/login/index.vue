@@ -106,13 +106,13 @@ export default {
   background: url("../../assets/images/background.jpg");
   background-size: 100% 100%;
   transform-style: preserve-3d;
+
   .container {
-    width: 320px;
+    width: 300px;
     height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-right: 60px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -124,7 +124,7 @@ export default {
 }
 
 @keyframes rotate-animate {
-  0% { transform: translate(-100%, -50%); }
-  100% { transform: translateX(-50%, -50%); }
+  0% { transform: translate(-100%, -50%) }
+  100% { transform: translateX(-50%, -50%) }
 }
 </style>
