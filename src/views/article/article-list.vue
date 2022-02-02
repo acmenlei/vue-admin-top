@@ -1,7 +1,6 @@
 <template>
   <el-card>
     <!-- 模糊查询 -->
-    <!-- 过滤查询 -->
     <el-form inline :model="filterConditions">
       <el-form-item label="标题">
         <el-input

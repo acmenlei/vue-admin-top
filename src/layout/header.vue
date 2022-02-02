@@ -1,6 +1,6 @@
 <template>
   <div id="myheader">
-    <div class="title">Vue后台管理系统解决方案</div>
+    <div class="title">Vue博客后台管理系统</div>
     <div class="right">
       <screen-full />
       <el-dropdown>
