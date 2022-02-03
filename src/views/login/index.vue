@@ -70,8 +70,8 @@ export default {
         ],
       },
       ruleForm: {
-        ll_username: "admin", // 测试号
-        ll_password: "admin",
+        ll_username: "", // 测试号
+        ll_password: "",
       },
     };
   },
