@@ -1,6 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
-import { router } from "./router";
+import { router } from "./permission";
 import Element from "element-ui";
 import VCharts from "v-charts"
 import Viewer from "v-viewer";

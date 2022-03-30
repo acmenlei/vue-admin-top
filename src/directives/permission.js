@@ -7,6 +7,7 @@ import store from "@/store"
  */
 function hasPermissions(permissionCode) {
     return new Promise((resolve) => {
+        // 全局事件监听 event bus
         setTimeout(() => {
             let { permissions } = store.state.permission;
             if(typeof permissionCode === 'object') {
