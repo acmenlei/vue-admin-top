@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: process.env.NODE_NEV == 'development' ? '/' : './'
+    publicPath: process.env.NODE_NEV == 'development' ? './' : '/'
 }
