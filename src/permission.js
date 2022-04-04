@@ -58,4 +58,4 @@ router.beforeEach(async (to, from, next) => {
 
 router.afterEach(() => nProgress.done())
 
-export { nProgress }
+export { nProgress, router }
